@@ -61,6 +61,20 @@ class Graph:
 
     def dfs(self, from_node, to_node) -> bool:
         return self._dfs_rec(from_node, to_node, set())
+    
+    def dfs_with_path(self,from_node, to_node, visited, path:list):
+        if from_node == to_node:
+            path.append(from_node)
+            return True
+
+        visited.add(from_node)
+        for node in self._edges[from_node]:
+            if node not in visited:
+                if self._dfs_rec(node, to_node, visited, path):
+                    path.append(from_node)
+                    return True
+        return False
+
 
     def _dfs_rec(self, from_node, to_node, visited) -> bool:
 
@@ -87,22 +101,14 @@ if __name__ == '__main__':
 
     graph.add_edge('Brussels', 'Tel Aviv')
     graph.add_edge('Brussels', 'Tokyo')
-
     graph.add_edge('Tokyo', 'Kyoto')
     graph.add_edge('Tokyo', 'Hong Kong')
-
     graph.add_edge('Tel Aviv', 'Paris')
-
     graph.add_edge('Hong Kong', 'Tel Aviv')
-
     graph.add_edge('Paris', 'Amsterdam')
     graph.add_edge('Paris', 'London')
 
     pprint.pprint(graph._edges)
 
-    # print(f"Path from Brussels to Amsterdam: {graph.bfs('Brussels', 'Amsterdam')}")
-    # print(f"Path from Tokyo to Brussels: {graph.bfs('Tokyo', 'Brussels')}")
-
-    print(
-        f"Path from Brussels to Amsterdam: {graph.dfs('Brussels', 'Amsterdam')}")
+    print(f"Path from Brussels to Amsterdam: {graph.dfs('Brussels', 'Amsterdam')}")
     print(f"Path from Tokyo to Brussels: {graph.dfs('Tokyo', 'Brussels')}")
