@@ -90,7 +90,7 @@ class Graph:
 
     def __str__(self):
         return self._edges
-    # asdf
+    
 
 if __name__ == '__main__':
 
@@ -108,7 +108,13 @@ if __name__ == '__main__':
     graph.add_edge('Paris', 'Amsterdam')
     graph.add_edge('Paris', 'London')
 
-    pprint.pprint(graph._edges)
+    # pprint.pprint(graph._edges)
 
     print(f"Path from Brussels to Amsterdam: {graph.dfs('Brussels', 'Amsterdam')}")
     print(f"Path from Tokyo to Brussels: {graph.dfs('Tokyo', 'Brussels')}")
+    print(f"Path from Brussels to London: {graph.dfs('Brussels', 'London')}")
+    print(f"Path from Brussels to Brussels: {graph.dfs('Brussels', 'Brussels')}")
+    print(f"Path from Brussels to Tokyo: {graph.dfs('Brussels', 'Tokyo')}")
+    print(f"Path from Brussels to Kyoto: {graph.dfs('Brussels', 'Kyoto')}")
+    print(f"Path from Brussels to Hong Kong: {graph.dfs('Brussels', 'Hong Kong')}")
+
